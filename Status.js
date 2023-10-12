@@ -1,5 +1,5 @@
 import {
-  NetInfo,
+  // NetInfo,
   Platform,
   StatusBar,
   StyleSheet,
@@ -8,6 +8,11 @@ import {
 } from "react-native";
 import React from "react";
 import Constants from "expo-constants";
+import NetInfo from '@react-native-community/netinfo';
+
+const subscription = NetInfo.addEventListener('connectionChange', (status) => {
+  console.log('Network status changed', status)
+  });
 
 export default class Status extends React.Component {
   state = {
@@ -49,6 +54,7 @@ export default class Status extends React.Component {
 }
 
 const statusHeight = Platform.OS == "ios" ? Constants.statusBarHeight : 0;
+
 const styles = StyleSheet.create({
   status: {
     zIndex: 1,
